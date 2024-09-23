@@ -19,7 +19,7 @@ public static class ConventionConfiguration
     public static void GetById([ApiConventionNameMatch(ApiConventionNameMatchBehavior.Suffix)] Guid id)
     {
     }
-    
+
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
