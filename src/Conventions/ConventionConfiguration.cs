@@ -58,15 +58,6 @@ public static class ConventionConfiguration
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public static void Update([ApiConventionNameMatch(ApiConventionNameMatchBehavior.Suffix)] Guid id)
-    {
-    }
-
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public static void Delete([ApiConventionNameMatch(ApiConventionNameMatchBehavior.Suffix)] Guid id)
     {
