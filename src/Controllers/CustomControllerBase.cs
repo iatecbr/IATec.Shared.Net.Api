@@ -17,15 +17,18 @@ public class CustomControllerBase : ControllerBase
 
         if (result.IsNoContentSuccess() || result.IsEmptyResult())
             return NoContent();
-        
+
         if (result.IsResourceNotFoundError())
             return NotFound(result.FailCustomResponse(HttpStatusCode.NotFound));
-        
+
         if (result.IsServiceUnavailableError())
             return StatusCode(StatusCodes.Status503ServiceUnavailable, result.FailCustomResponse(HttpStatusCode.ServiceUnavailable));
 
+        if (result.IsInternalServerError())
+            return StatusCode(StatusCodes.Status500InternalServerError, result.FailCustomResponse(HttpStatusCode.InternalServerError));
+
         if (result.IsBadRequestError() || result.IsFailed)
-            return BadRequest(result.FailCustomResponse(HttpStatusCode.BadRequest));
+                return BadRequest(result.FailCustomResponse(HttpStatusCode.BadRequest));
 
         return Ok(result.SuccessCustomResponse(HttpStatusCode.OK));
     }
@@ -40,13 +43,16 @@ public class CustomControllerBase : ControllerBase
 
         if (result.IsResourceNotFoundError())
             return NotFound(result.FailCustomResponse(HttpStatusCode.NotFound));
-        
+
         if (result.IsServiceUnavailableError())
             return StatusCode(StatusCodes.Status503ServiceUnavailable, result.FailCustomResponse(HttpStatusCode.ServiceUnavailable));
-        
+
+        if (result.IsInternalServerError())
+            return StatusCode(StatusCodes.Status500InternalServerError, result.FailCustomResponse(HttpStatusCode.InternalServerError));
+
         if (result.IsBadRequestError() || result.IsFailed)
             return BadRequest(result.FailCustomResponse(HttpStatusCode.BadRequest));
-        
+
         return Ok(CustomResponseExtensions.SuccessCustomResponse(HttpStatusCode.OK));
     }
 }
