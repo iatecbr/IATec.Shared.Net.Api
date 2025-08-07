@@ -28,7 +28,7 @@ public class CustomControllerBase : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, result.FailCustomResponse(HttpStatusCode.InternalServerError));
 
         if (result.IsBadRequestError() || result.IsFailed)
-                return BadRequest(result.FailCustomResponse(HttpStatusCode.BadRequest));
+            return BadRequest(result.FailCustomResponse(HttpStatusCode.BadRequest));
 
         return Ok(result.SuccessCustomResponse(HttpStatusCode.OK));
     }
