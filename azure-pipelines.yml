@@ -43,7 +43,7 @@ steps:
   - script: dotnet build --configuration $(buildConfiguration)
     displayName: 'Dotnet build'
 
-- task: DotNetCoreCLI@2
+  - task: DotNetCoreCLI@2
     inputs:
       command: 'pack'
       packagesToPack: '**/IATec.Shared.Api.csproj' 
