@@ -29,7 +29,7 @@
 
     <ItemGroup>
         <PackageReference Include="FluentResults" Version="3.16.0"/>
-        <PackageReference Include="IATec.Shared.Domain" Version="1.0.0-RC1"/>
+        <PackageReference Include="IATec.Shared.Domain" Version="1.0.1"/>
         <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0"/>
     </ItemGroup>
 </Project>
