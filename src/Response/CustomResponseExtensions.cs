@@ -20,7 +20,7 @@ public static class CustomResponseExtensions
     private static CustomResponseDto BuildCustomResponse(bool success, HttpStatusCode statusCode, object? data, 
         List<string> errors) => new (success, (int)statusCode, data, errors, DateTimeOffset.UtcNow);
 
-    private static List<string> BuildErrorMessageList(List<IError> resultErrorList)
+    private static List<string> BuildErrorMessageList(IReadOnlyList<IError> resultErrorList)
     {
         var errorList = resultErrorList.Select(error => error.Message).ToList();
         return errorList;
