@@ -60,10 +60,10 @@ public static class CustomResponseExtensions
     /// Extracts error messages from a FluentResults error list.
     /// </summary>
     /// <param name="resultErrorList">The list of errors from FluentResults.</param>
-    /// <returns>A list of error message strings. Returns an empty list if the input is null.</returns>
+    /// <returns>A list of error message strings. Returns an empty list if there are no errors.</returns>
     private static List<string> BuildErrorMessageList(IReadOnlyList<IError> resultErrorList)
     {
-        if (resultErrorList == null || resultErrorList.Count == 0)
+        if (resultErrorList.Count == 0)
             return new List<string>();
 
         return resultErrorList.Select(error => error.Message).ToList();
