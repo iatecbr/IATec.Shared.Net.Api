@@ -7,13 +7,24 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IATec.Shared.Api.Controllers;
 
+/// <summary>
+/// Provides a customizable base controller that standardizes action results
+/// based on FluentResults <see cref="Result"/> states.
+/// </summary>
 public class CustomControllerBase : ControllerBase
 {
+    /// <summary>
+    /// Converts a generic FluentResults <see cref="Result{T}"/> into a standardized <see cref="ActionResult"/>.
+    /// </summary>
+    /// <typeparam name="T">The type of the value inside the result.</typeparam>
+    /// <param name="result">The FluentResults result to process.</param>
+    /// <param name="location">Optional URI location for created resources.</param>
+    /// <returns>An <see cref="ActionResult"/> with the appropriate HTTP status code and response body.</returns>
     [NonAction]
     protected ActionResult CustomResult<T>(Result<T> result, string? location = null)
     {
         if (result.IsCreatedSuccess())
-            return Created(location!, result.SuccessCustomResponse(HttpStatusCode.Created));
+            return Created(location, result.SuccessCustomResponse(HttpStatusCode.Created));
 
         if (result.IsNoContentSuccess() || result.IsEmptyResult())
             return NoContent();
@@ -33,10 +44,16 @@ public class CustomControllerBase : ControllerBase
         return Ok(result.SuccessCustomResponse(HttpStatusCode.OK));
     }
 
+    /// <summary>
+    /// Converts a non-generic FluentResults <see cref="Result"/> into a standardized <see cref="ActionResult"/>.
+    /// </summary>
+    /// <param name="result">The FluentResults result to process.</param>
+    /// <param name="location">Optional URI location for created resources.</param>
+    /// <returns>An <see cref="ActionResult"/> with the appropriate HTTP status code and response body.</returns>
     protected ActionResult CustomResult(Result result, string? location = null)
     {
         if (result.IsCreatedSuccess())
-            return Created(location!, CustomResponseExtensions.SuccessCustomResponse(HttpStatusCode.Created));
+            return Created(location, CustomResponseExtensions.SuccessCustomResponse(HttpStatusCode.Created));
 
         if (result.IsNoContentSuccess())
             return NoContent();
