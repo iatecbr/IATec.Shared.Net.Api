@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### CHANGED
 - **Bumped** `IATec.Shared.Domain` from `1.2.0` to `2.0.0`.
-- Improved internal null-safety by guarding `BuildErrorMessageList` against null or empty input lists and returning an empty list instead.
+- Improved internal handling by returning an empty list from `BuildErrorMessageList` when no errors are present.
 
 ## [1.1.0] - 2026-01-12
 
