@@ -34,9 +34,12 @@ public class CustomControllerBase : ControllerBase
 
         if (result.IsServiceUnavailableError())
             return StatusCode(StatusCodes.Status503ServiceUnavailable, result.FailCustomResponse(HttpStatusCode.ServiceUnavailable));
-
         if (result.IsInternalServerError())
-            return StatusCode(StatusCodes.Status500InternalServerError, result.FailCustomResponse(HttpStatusCode.InternalServerError));
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                result.FailCustomResponse(HttpStatusCode.InternalServerError));
+
+        if (result.IsConflictError())
+            return Conflict(result.FailCustomResponse(HttpStatusCode.Conflict));
 
         if (result.IsBadRequestError() || result.IsFailed)
             return BadRequest(result.FailCustomResponse(HttpStatusCode.BadRequest));
@@ -66,6 +69,9 @@ public class CustomControllerBase : ControllerBase
 
         if (result.IsInternalServerError())
             return StatusCode(StatusCodes.Status500InternalServerError, result.FailCustomResponse(HttpStatusCode.InternalServerError));
+
+        if (result.IsConflictError())
+            return Conflict(result.FailCustomResponse(HttpStatusCode.Conflict));
 
         if (result.IsBadRequestError() || result.IsFailed)
             return BadRequest(result.FailCustomResponse(HttpStatusCode.BadRequest));

@@ -4,7 +4,7 @@ Shared library for .NET API projects at IATec. It provides standardized controll
 
 ## Features
 
-- **CustomControllerBase**: Standardized base controller that translates FluentResults states into proper HTTP responses (Created, NoContent, NotFound, BadRequest, ServiceUnavailable, InternalServerError, OK).
+- **CustomControllerBase**: Standardized base controller that translates FluentResults states into proper HTTP responses (Created, NoContent, NotFound, BadRequest, Conflict, ServiceUnavailable, InternalServerError, OK).
 - **CustomResponseDto**: Uniform API response envelope with `Success`, `StatusCode`, `Data`, `Messages`, and `DateTimeUtc`.
 - **CustomResponseExtensions**: Extension methods to map FluentResults `Result` and `Result<T>` to `CustomResponseDto`.
 - **ConventionConfiguration**: API Explorer conventions for common CRUD operations (`GetById`, `List`, `Create`, `Update`, `Delete`) with default `ProducesResponseType` attributes.
@@ -20,7 +20,7 @@ dotnet add package IATec.Shared.Api
 ## Requirements
 
 - .NET 8.0, .NET 9.0 or .NET 10.0
-- `IATec.Shared.Domain` >= `2.0.0`
+- `IATec.Shared.Domain` >= `2.1.0`
 - `FluentResults` >= `4.0.0`
 
 ## Usage
